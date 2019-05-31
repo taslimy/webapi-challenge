@@ -12,7 +12,7 @@ server.get("/", (req, res) => {
 
 // Define Routes
 server.use("/api/actions", require("./data/helpers/actions-router"));
-server.use("/api/projets", require("./data/helpers/projects-router"));
+server.use("/api/projects", require("./data/helpers/projects-router")); // I Fixed a typo here... had projets.....
 
 // Logger
 function logger(req, res, next) {
