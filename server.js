@@ -11,8 +11,8 @@ server.get("/", (req, res) => {
 });
 
 // Define Routes
-server.use("/api/actions", require("./data/helpers/actions-router"));
-server.use("/api/projects", require("./data/helpers/projects-router")); // I Fixed a typo here... had projets.....
+server.use("/api/actions", require("./routes/api/actions-router"));
+server.use("/api/projects", require("./routes/api/projects-router")); // I Fixed a typo here... had projets.....
 
 // Logger
 function logger(req, res, next) {

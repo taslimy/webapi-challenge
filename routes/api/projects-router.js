@@ -1,13 +1,13 @@
 const express = require("express");
 
-const Actions = require("./actionModel");
+const Projects = require("../../data/helpers/projectModel");
 
 const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const actions = await Actions.get();
-    res.status(200).json(actions);
+    const projects = await Projects.get();
+    res.status(200).json(projects);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -18,8 +18,8 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const actions = await Actions.get(req.params.id);
-    res.status(200).json(actions);
+    const projects = await Projects.get(req.params.id);
+    res.status(200).json(projects);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -30,8 +30,8 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const actions = await Actions.insert(req.body);
-    res.status(200).json(actions);
+    const projects = await Projects.insert(req.body);
+    res.status(200).json(projects);
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -42,24 +42,37 @@ router.post("/", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const actions = await Actions.update(req.params.id, req.body);
-    res.status(200).json(actions);
+    const projects = await Projects.update(req.params.id, req.body);
+    res.status(200).json(projects);
   } catch (error) {
     console.log(error);
     res.status(500).json({
-      msg: "cannot change this projects"
+      msg: "cannot delete this projects"
     });
   }
 });
 
 router.delete("/:id", async (req, res) => {
   try {
-    const actions = await Actions.remove(req.params.id);
-    res.status(200).json(actions);
+    const projects = await Projects.remove(req.params.id);
+    res.status(200).json(projects);
   } catch (error) {
     console.log(error);
     res.status(500).json({
       msg: "cannot delete this projects"
+    });
+  }
+});
+
+//  getProjectActions(projectId)
+router.get("/:id/action", async (req, res) => {
+  try {
+    const projects = await Projects.getProjectActions(req.params.id);
+    res.status(200).json(projects);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      msg: "cannot find this projects"
     });
   }
 });
